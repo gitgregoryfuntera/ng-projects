@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../services/project-service/project.service';
+import { AuthService } from '../services/auth-service/auth.service'; 
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private projSvc: ProjectService,
+    private authSvc: AuthService) { }
+
+  projects = [];
 
   ngOnInit() {
+    this.getProjects();
   }
 
+  getProjects() {
+    this.projSvc.getProjects()
+      .subscribe(response => {
+        this.projects = response
+      }, error => {
+        console.log(error);
+    });
+  }
+
+  onLogout() {
+    this.authSvc.logoutUser()
+      .subscribe(response => {
+        console.log(response); 
+    }, error => {
+        console.log(error)
+    });
+  }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth-service/auth.service';
+import { User } from '../models/user.model';
+
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authSvc: AuthService) { }
+
+  user = new User('', '');
 
   ngOnInit() {
+    
+  }
+
+  onSubmit() {
+    this.authSvc.loginUser(this.user)
+      .subscribe(response => {
+          this.authSvc.setToken(response)
+      });
   }
 
 }

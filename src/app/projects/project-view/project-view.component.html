@@ -1,3 +1,24 @@
 <p>
   project-view works!
 </p>
+
+<div *ngIf="project">
+    <form (ngSubmit)="onUpdate()" #projForm="ngForm">
+        <input 
+          [(ngModel)]="project.title" 
+          placeholder="Title" 
+          value="{{ project.title }}" 
+          name="title"
+        />
+        <textarea 
+          [(ngModel)]="project.description" 
+          placeholder="Description"
+          name="description"
+        >{{ project.description }}</textarea>
+        <button type="submit">Submit</button>
+        <button (click)="onDelete()" type="button">Delete</button>
+    </form>
+</div>
+
+
+<button [routerLink]="['/home']">Home</button>

@@ -1,3 +1,9 @@
 <p>
   auth works!
 </p>
+
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <input [(ngModel)]="user.email" placeholder="email "type="email" name="email"/>
+  <input [(ngModel)]="user.password" placeholder="password" type="password" name="password"/>
+  <button type="submit">Submit</button>
+</form>

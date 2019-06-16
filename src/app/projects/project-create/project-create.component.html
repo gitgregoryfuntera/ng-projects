@@ -1,3 +1,10 @@
 <p>
   project-create works!
 </p>
+
+<form (ngSubmit)="onSubmit()" #projectForm="ngForm">
+  <input type="text" placeholder="Title" [(ngModel)]="project.title" name="title"/>
+  <textarea placeholder="Description" [(ngModel)]="project.description" name="description">
+  </textarea>
+  <button type="submit">Submit</button>
+</form>

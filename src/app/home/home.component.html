@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+<p>Home Works!</p>
+<ul *ngIf="projects.length">
+  <li *ngFor="let project of projects">
+      {{ project.title }}
+      <button [routerLink]="['/projects', project.id]">View Project</button>
+  </li>
+</ul>
+<button mat-button [routerLink]="['/projects-create']">Create Project</button>
+<button mat-button (click)="onLogout()">Logout</button>
