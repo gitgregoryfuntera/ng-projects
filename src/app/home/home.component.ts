@@ -31,7 +31,11 @@ export class HomeComponent implements OnInit {
   onLogout() {
     this.authSvc.logoutUser()
       .subscribe(response => {
-        console.log(response); 
+        const status = response.status;
+        if (status === 200) {
+          this.authSvc.clearToken();
+          this.authSvc.goTo('login');
+        }
     }, error => {
         console.log(error)
     });

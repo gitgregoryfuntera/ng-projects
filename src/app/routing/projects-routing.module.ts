@@ -6,14 +6,15 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { ProjectViewComponent } from '../projects/project-view/project-view.component';
 import { ProjectCreateComponent } from '../projects/project-create/project-create.component';
 import { RegisterComponent } from '../auth/register/register.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'projects/:id', component: ProjectViewComponent },
-  { path: 'projects-create', component: ProjectCreateComponent },
+  { path: 'projects/:id', component: ProjectViewComponent, canActivate:[AuthGuard]},
+  { path: 'projects-create', component: ProjectCreateComponent, canActivate:[AuthGuard]},
   { path: '**', component: PageNotFoundComponent }
 ];
 

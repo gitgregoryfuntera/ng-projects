@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../../models/user.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import { Observable } from 'rxjs';
 export class AuthService {
   API = environment.API;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router) { }
 
   registerUser(user: User): Observable<any> {
     return this.httpClient.post(this.API + 'register', user);
@@ -21,7 +24,7 @@ export class AuthService {
   }
 
   logoutUser():Observable<any> {
-    return this.httpClient.post(this.API + 'logout', '');
+    return this.httpClient.post(this.API + 'logout', '', { observe: 'response' });
   }
 
   setToken(userDetails) {
@@ -30,5 +33,9 @@ export class AuthService {
 
   clearToken() {
     localStorage.clear();
+  }
+
+  goTo(url: string) {
+    this.router.navigate(['/' + url]);
   }
 }
