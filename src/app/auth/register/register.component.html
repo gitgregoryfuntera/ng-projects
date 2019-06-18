@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   register works!
 </p>
 
@@ -8,4 +8,62 @@
   <input [(ngModel)]="user.password" placeholder="password" type="password" name="password"/>
   <input [(ngModel)]="user.password_confirmation" placeholder="confirm password" type="password" name="password_confirmation"/>
   <button type="submit">Submit</button>
-</form>
+</form> -->
+
+<div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput [(ngModel)]="user.username" placeholder="Username" type="text" name="username" required>
+            <mat-icon matSuffix>person_pin</mat-icon>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input matInput [(ngModel)]="user.email" placeholder="Email" type="email" name="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="password-input">
+              <input 
+                matInput 
+                [(ngModel)]="user.password" 
+                placeholder="Password" 
+                [type]="hide ? 'password' : 'text'" name="password"
+                required
+              >
+              <button 
+                type="button"
+                mat-icon-button 
+                matSuffix (click)="hide = !hide" 
+                [attr.aria-label]="'Hide password'" 
+                [attr.aria-pressed]="hide"
+              >
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput [(ngModel)]="user.password_confirmation" placeholder="Confirm Password" type="password" name="password_confirmation" required>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
+        </mat-card-content>
+        <div class="btn-container">
+          <div *ngIf="!loading; else loader">
+            <button type="button" mat-button color="primary" [routerLink]="['/login']">Back</button>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+          </div>
+          <ng-template #loader>
+            <div>
+              <mat-spinner [diameter]="30"></mat-spinner>
+            </div>
+          </ng-template>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

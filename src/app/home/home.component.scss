@@ -1,0 +1,16 @@
+.btn-add-proj {
+    position: fixed;
+    z-index: 9999999;
+    right: 20px;
+    bottom: 30px;
+}
+
+.card {
+    max-width: 400px;
+    margin-bottom: 3px; 
+}
+  
+.header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}

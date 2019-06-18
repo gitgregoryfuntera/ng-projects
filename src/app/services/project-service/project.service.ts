@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../../models/project.model';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import { environment } from 'src/environments/environment';
 export class ProjectService {
   API = environment.API;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private _snackBar: MatSnackBar) { }
 
   getProjects(): Observable<any> {
     return this.httpClient.get(this.API + 'projects');
@@ -30,5 +33,12 @@ export class ProjectService {
 
   deleteProject(projectID): Observable<any> {
     return this.httpClient.delete(this.API + 'projects/' + projectID);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2500,
+      verticalPosition: 'top',
+    });
   }
 }

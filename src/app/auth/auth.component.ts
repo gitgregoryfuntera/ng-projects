@@ -13,19 +13,20 @@ export class AuthComponent implements OnInit {
 
   user = new User('', '');
   hide = true;
+  loading = false;
 
   ngOnInit() {
-    
   }
 
   onSubmit() {
+    this.loading = true;
     this.authSvc.loginUser(this.user)
       .subscribe(response => {
           this.authSvc.setToken(response);
-          // Successfull logged in
           this.authSvc.goTo('home');
       }, error => {
           console.log(error);
+          this.loading = false;
       });
   }
 

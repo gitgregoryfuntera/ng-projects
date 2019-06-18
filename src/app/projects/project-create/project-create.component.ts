@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project-service/project.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 import { Project } from '../../models/project.model';
+
 
 @Component({
   selector: 'app-project-create',
@@ -9,19 +11,31 @@ import { Project } from '../../models/project.model';
 })
 export class ProjectCreateComponent implements OnInit {
 
-  constructor(private projSvc: ProjectService) { }
+  constructor(
+    private projSvc: ProjectService,
+    private authSvc: AuthService) { }
 
   project = new Project('','');
-
+  
+  loading = false;
+  
   ngOnInit() {
 
   }
 
   onSubmit() {
+    this.loading = true;
     this.projSvc.createProject(this.project)
       .subscribe(project => {
-        console.log(project);
+        this.loading = false;
+        this.authSvc.goTo('home');
+        this.projSvc.openSnackBar('Successfully added a new project :)', 'Done');
+    }, error => {
+        this.loading = false;
+        console.log(error);
     });
   }
+
+
 
 }

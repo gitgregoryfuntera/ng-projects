@@ -1,4 +1,16 @@
-<mat-toolbar class="mat-elevation-z4" color="primary">My App</mat-toolbar>
+<mat-toolbar class="mat-elevation-z4" color="primary">
+    My App
+    <span class="spacer"></span>
+    <button 
+        *ngIf="checkLogin()" 
+        mat-icon-button 
+        matTooltip="Sign Out" 
+        matTooltipPosition="below"
+        (click)="onLogout()"
+    >
+        <mat-icon>close</mat-icon>
+    </button> 
+</mat-toolbar>
 <div class="m-10">
     <router-outlet></router-outlet>
 </div>
