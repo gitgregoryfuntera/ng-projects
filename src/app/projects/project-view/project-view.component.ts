@@ -19,6 +19,7 @@ export class ProjectViewComponent implements OnInit {
 
   project: Project;
   loading = false;
+  errors: Object = {};
 
   ngOnInit() {
     const projectID = this.route.snapshot.paramMap.get('id');
@@ -31,7 +32,7 @@ export class ProjectViewComponent implements OnInit {
         this.project = project;
         console.log(this.project);
     }, error => {
-        console.log(error);
+
     });
   }
 
@@ -44,7 +45,11 @@ export class ProjectViewComponent implements OnInit {
         this.projSvc.openSnackBar('Successfully updated Project :)', 'Done');
       }, error => {
           this.loading = false;
-          console.log(error);
+          if (error.error.errors) {
+            this.errors = error.error.errors;
+          }
+          console.log(this.errors);
+          this.checkAuthAccess(error);
       });
   }
 
@@ -55,8 +60,14 @@ export class ProjectViewComponent implements OnInit {
         this.authSvc.goTo('home');
         this.projSvc.openSnackBar('Successfully Deleted a Project :)', 'Done');
       }, error => {
-          console.log(error);
+          this.checkAuthAccess(error);
       });
+  }
+
+  checkAuthAccess(error) {
+    if (error.status === 401) {
+      this.projSvc.openSnackBar(error.error.message, 'Error');
+    }
   }
 
 }

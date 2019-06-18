@@ -1,17 +1,5 @@
-<!-- <p>
-  register works!
-</p>
-
-<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-  <input [(ngModel)]="user.username" placeholder="username" type="text" name="username"/>
-  <input [(ngModel)]="user.email" placeholder="email" type="email" name="email"/>
-  <input [(ngModel)]="user.password" placeholder="password" type="password" name="password"/>
-  <input [(ngModel)]="user.password_confirmation" placeholder="confirm password" type="password" name="password_confirmation"/>
-  <button type="submit">Submit</button>
-</form> -->
-
 <div class="container">
-    <mat-card>
+    <mat-card class="base-card">
       <mat-card-header>
         <mat-card-title>Register</mat-card-title>
       </mat-card-header>
@@ -21,11 +9,19 @@
             <input matInput [(ngModel)]="user.username" placeholder="Username" type="text" name="username" required>
             <mat-icon matSuffix>person_pin</mat-icon>
           </mat-form-field>
+          <div class="error-indicators" *ngIf="errors.username">
+            <mat-icon>error</mat-icon> 
+            <span>{{ errors.username }}</span>
+          </div>
           
           <mat-form-field>
             <input matInput [(ngModel)]="user.email" placeholder="Email" type="email" name="email" required>
             <mat-icon matSuffix>email</mat-icon>
           </mat-form-field>
+          <div class="error-indicators" *ngIf="errors.email">
+            <mat-icon>error</mat-icon> 
+            <span>{{ errors.email }}</span>
+          </div>
 
           <mat-form-field class="password-input">
               <input 
@@ -45,6 +41,10 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
             </mat-form-field>
+            <div class="error-indicators" *ngIf="errors.password">
+              <mat-icon>error</mat-icon> 
+              <span>{{ errors.password }}</span>
+            </div>
 
             <mat-form-field>
                 <input matInput [(ngModel)]="user.password_confirmation" placeholder="Confirm Password" type="password" name="password_confirmation" required>
@@ -55,7 +55,7 @@
         <div class="btn-container">
           <div *ngIf="!loading; else loader">
             <button type="button" mat-button color="primary" [routerLink]="['/login']">Back</button>
-            <button type="submit" mat-raised-button color="primary">Submit</button>
+            <button class="btn-submit" type="submit" mat-raised-button color="primary">Submit</button>
           </div>
           <ng-template #loader>
             <div>

@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
   user = new User('', '', '', '');
   hide = true;
   loading = false;
-
+  errors: Object = {};
+  
   ngOnInit() {
 
   }
@@ -30,9 +31,15 @@ export class RegisterComponent implements OnInit {
         this.projSvc.openSnackBar('Registration Success :)', 'Done')
         this.authSvc.goTo('login');
       }, error => {
-          console.log()
+          this.errors = error.error.errors;
           this.loading = false;
+          console.log(this.errors);
       });
   }
+
+  // checkErrors(error, ) {
+  //   let objError: Object = error;
+
+  // }
 
 }

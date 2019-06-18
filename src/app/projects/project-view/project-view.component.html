@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card>
+  <mat-card class="base-card">
     <mat-card-header>
       <mat-card-title>View Project   
         <div class="btn-delete" matTooltip="Delete">
@@ -14,15 +14,23 @@
           <mat-form-field>
             <input matInput placeholder="Title" [(ngModel)]="project.title" name="title" required>
           </mat-form-field>
+          <div class="error-indicators" *ngIf="errors.title">
+            <mat-icon>error</mat-icon> 
+            <span>{{ errors.title }}</span>
+          </div>
           
           <mat-form-field>
             <textarea matInput placeholder="Description" rows="5" [(ngModel)]="project.description" name="description" required></textarea>
           </mat-form-field>
+          <div class="error-indicators" *ngIf="errors.description">
+            <mat-icon>error</mat-icon> 
+            <span>{{ errors.description }}</span>
+          </div>
       </mat-card-content>
       <div class="btn-container">
         <div *ngIf="!loading; else loader">
           <button type="button" mat-button color="primary" [routerLink]="['/home']">Back</button>
-          <button type="submit" mat-raised-button color="primary">Update</button>
+          <button class="btn-update" type="submit" mat-raised-button color="primary">Update</button>
         </div>
         <ng-template #loader>
           <div>

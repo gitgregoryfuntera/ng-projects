@@ -16,8 +16,8 @@ export class ProjectCreateComponent implements OnInit {
     private authSvc: AuthService) { }
 
   project = new Project('','');
-  
   loading = false;
+  errors: Object = {};
   
   ngOnInit() {
 
@@ -31,8 +31,8 @@ export class ProjectCreateComponent implements OnInit {
         this.authSvc.goTo('home');
         this.projSvc.openSnackBar('Successfully added a new project :)', 'Done');
     }, error => {
+        this.errors = error.error.errors;
         this.loading = false;
-        console.log(error);
     });
   }
 

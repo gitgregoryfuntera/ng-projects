@@ -14,6 +14,8 @@ export class AuthComponent implements OnInit {
   user = new User('', '');
   hide = true;
   loading = false;
+  errors: Object = {};
+  authError: Object = {};
 
   ngOnInit() {
   }
@@ -25,7 +27,16 @@ export class AuthComponent implements OnInit {
           this.authSvc.setToken(response);
           this.authSvc.goTo('home');
       }, error => {
-          console.log(error);
+          this.authError = {};
+          this.errors = {};
+          // 401 error (Unauthorized)
+          if (error.error) {
+            this.authError = error.error
+          }
+          // 422 error (Invalid Data)
+          if (error.error.errors) {
+            this.errors = error.error.errors; 
+          }
           this.loading = false;
       });
   }
