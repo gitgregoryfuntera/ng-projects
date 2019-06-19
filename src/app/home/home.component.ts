@@ -21,6 +21,11 @@ export class HomeComponent implements OnInit {
     this.projSvc.getProjects()
       .subscribe(response => {
         this.projects = response
+        if (this.projects.length) {
+          console.log('meron');
+        } else {
+          console.log('wala');
+        }
       }, error => {
         console.log(error);
     });

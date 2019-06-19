@@ -6,6 +6,16 @@
     left: 0;
     right: 0;
 }
+h4 {
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 400;
+}
+
+.project-content {
+    margin: 8px;
+}
 
 .btn-add-proj {
     position: fixed;
@@ -17,9 +27,4 @@
 .card {
     max-width: 400px;
     margin-bottom: 10px; 
-}
-  
-.header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
 }

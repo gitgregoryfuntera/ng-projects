@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProjectInterceptor } from './interceptors/project.interceptor';
 import { FormsModule }   from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
+import { AvatarModule } from 'ngx-avatar';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegisterComponent } from './auth/register/register.component';
     ProjectsRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    AvatarModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ProjectInterceptor, multi: true }],
   bootstrap: [AppComponent]
