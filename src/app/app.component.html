@@ -11,8 +11,8 @@
         <mat-icon>close</mat-icon>
     </button> 
 </mat-toolbar>
-<div class="m-10">
-    <router-outlet></router-outlet>
+<div class="m-10" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
 </div>
 
 

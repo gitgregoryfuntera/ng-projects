@@ -27,11 +27,11 @@ import { AvatarModule } from 'ngx-avatar';
     RegisterComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ProjectsRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     AppMaterialModule,
     AvatarModule
   ],

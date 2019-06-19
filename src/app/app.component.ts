@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth-service/auth.service';
-
-
+import { RouterOutlet } from '@angular/router';
+import { slideInAnimation } from './animations/animation';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [slideInAnimation]
 })
 export class AppComponent {
 
@@ -30,5 +31,9 @@ export class AppComponent {
           this.authSvc.goTo('login');
         }
       });
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

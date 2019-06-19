@@ -9,9 +9,9 @@ import { RegisterComponent } from '../auth/register/register.component';
 import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: AuthComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
+  { path: 'login', component: AuthComponent, data: {animation: 'LoginPage'}},
+  { path: 'register', component: RegisterComponent,},
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard],  data: {animation: 'HomePage'}},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'projects/:id', component: ProjectViewComponent, canActivate:[AuthGuard]},
   { path: 'projects-create', component: ProjectCreateComponent, canActivate:[AuthGuard]},
