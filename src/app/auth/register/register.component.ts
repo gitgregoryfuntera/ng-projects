@@ -33,13 +33,6 @@ export class RegisterComponent implements OnInit {
       }, error => {
           this.errors = error.error.errors;
           this.loading = false;
-          console.log(this.errors);
       });
   }
-
-  // checkErrors(error, ) {
-  //   let objError: Object = error;
-
-  // }
-
 }
